@@ -1,3 +1,11 @@
+import {
+  Model,
+  Column,
+  Table,
+  PrimaryKey,
+  DataType,
+} from 'sequelize-typescript';
+
 export enum TransactionType {
   CREDIT = 'credit',
   DEBIT = 'debit',
@@ -5,14 +13,19 @@ export enum TransactionType {
 
 export const TransactionTypeList: string[] = Object.values(TransactionType);
 
-export class Transaction {
+@Table({
+  tableName: 'transactions',
+  createdAt: 'created_at',
+  updatedAt: 'updated_at',
+})
+export class Transaction extends Model {
+  @PrimaryKey
+  @Column({ type: DataType.UUID, defaultValue: DataType.UUIDV4 })
   id: string;
-  type: TransactionType;
-  amount: number;
 
-  constructor(transaction: any) {
-    this.id = transaction.id;
-    this.type = transaction.type;
-    this.amount = transaction.amount;
-  }
+  @Column({ allowNull: false })
+  type: TransactionType;
+
+  @Column({ allowNull: false, type: DataType.DECIMAL(10, 2) })
+  amount: number;
 }

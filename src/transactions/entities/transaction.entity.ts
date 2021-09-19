@@ -3,6 +3,8 @@ export enum TransactionType {
   DEBIT = 'debit',
 }
 
+export const TransactionTypeList: string[] = Object.values(TransactionType);
+
 export class Transaction {
   id: string;
   type: TransactionType;

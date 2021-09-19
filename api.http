@@ -1,0 +1,11 @@
+### get transactions
+GET http://localhost:3000/transactions
+
+### create transactions
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "type": "credit",
+  "amount": 3252.40
+}

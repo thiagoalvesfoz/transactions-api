@@ -6,8 +6,8 @@ import { Transaction } from './transactions/entities/transaction.entity';
 @Module({
   imports: [
     SequelizeModule.forRoot({
-      dialect: process.env.DIALECT as any,
-      storage: process.env.DB_CONNECTION,
+      dialect: 'sqlite',
+      storage: __dirname + '/database/database.sqlite',
       models: [Transaction],
       autoLoadModels: true,
       synchronize: true,
